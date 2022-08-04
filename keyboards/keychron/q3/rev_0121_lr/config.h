@@ -16,18 +16,24 @@
 
 #pragma once
 
-#include "quantum.h"
+/* USB Device descriptor parameter */
+#define PRODUCT_ID 0x0121
+#define DEVICE_VER 0x0100
 
-#if   defined(KEYBOARD_keychron_q3_rev_0120)
-#    include "rev_0120.h"
-#elif defined(KEYBOARD_keychron_q3_rev_0121)
-#    include "rev_0121.h"
-#elif defined(KEYBOARD_keychron_q3_rev_0121_lr)
-#    include "rev_0121_lr.h"
-#elif defined(KEYBOARD_keychron_q3_rev_0122)
-#    include "rev_0122.h"
-#elif defined(KEYBOARD_keychron_q3_rev_0123)
-#    include "rev_0123.h"
-#elif defined(KEYBOARD_keychron_q3_rev_0120_lhg)
-#    include "rev_0120_lhg.h"
-#endif
+/* key matrix pins */
+#define MATRIX_ROW_PINS { B5, B4, B3, A15, A14, A13 }
+#define MATRIX_COL_PINS { C14, C15, A0, A1, A2, A3, A4, A5, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN, NO_PIN }
+
+/* RGB Matrix Configuration */
+#define DRIVER_1_LED_TOTAL 48
+#define DRIVER_2_LED_TOTAL 39
+#define DRIVER_LED_TOTAL (DRIVER_1_LED_TOTAL + DRIVER_2_LED_TOTAL)
+
+/* Encoder Configuration */
+#define ENCODERS_PAD_A { A10 }
+#define ENCODERS_PAD_B { A8 }
+#define ENCODER_RESOLUTION 4
+#define ENCODER_DEFAULT_POS 0x3
+
+/* Enable CapsLcok LED */
+#define CAPS_LOCK_LED_INDEX 50

@@ -34,10 +34,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [FN] = LAYOUT_ansi_82(
         _______,            KC_F13 ,  KC_F14 ,  KC_F15 ,  KC_F16 ,  KC_F17 ,  KC_F18 ,  KC_F19 ,  KC_F20 ,  KC_F21 ,  KC_F22 ,  KC_F23 ,  KC_F24 ,  _______,  _______,
-        _______,  KC_P1  ,  KC_P2  ,  KC_P3  ,  KC_PSLS,  KC_PAST,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            KC_VOLD,
-        KC_NUM ,  KC_P4  ,  KC_P5  ,  KC_P6  ,  KC_PDOT,  KC_PCMM,  _______,  _______,  _______,  _______,  KC_PSCR,  _______,  _______,  _______,            KC_VOLU,
-        QK_LOCK,  KC_P7  ,  KC_P8  ,  KC_P9  ,  KC_PEQL,  _______,  _______,  _______,  _______,  RGB_TOG,  _______,  _______,            KC_PENT,            _______,
-        _______,            KC_PMNS,  KC_P0  ,  KC_PPLS,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  KC_MPLY,
+        _______,  KC_PSLS,  KC_PAST,  KC_PMNS,  KC_PPLS,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            KC_VOLD,
+        KC_NUM ,  KC_P1  ,  KC_P2  ,  KC_P3  ,  KC_PDOT,  _______,  _______,  _______,  _______,  _______,  KC_PSCR,  _______,  _______,  _______,            KC_VOLU,
+        QK_LOCK,  KC_P4  ,  KC_P5  ,  KC_P6  ,  KC_PENT,  _______,  _______,  _______,  _______,  RGB_TOG,  _______,  _______,            KC_PENT,            _______,
+        _______,            KC_P7  ,  KC_P8  ,  KC_P9  ,  KC_P0  ,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  KC_MPLY,
         _______,  _______,  _______,                                _______,                                _______,  TG(FN),   _______,  KC_MPRV,  KC_MUTE,  KC_MNXT),
 
     [SWI] = LAYOUT_ansi_82(

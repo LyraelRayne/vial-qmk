@@ -54,6 +54,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
+#ifdef DIP_SWITCH_ENABLE
 bool dip_switch_update_user(uint8_t index, bool active) {
     if (index == 0) {
         /* Active = right/windows */
@@ -65,6 +66,7 @@ bool dip_switch_update_user(uint8_t index, bool active) {
     }
     return false;
 }
+#endif
 
 void matrix_init_user(void) {
 #ifdef RGB_MATRIX_ENABLE

@@ -1,0 +1,17 @@
+{
+    "caps_word": {
+        "enabled": true,
+        "both_shifts_turns_on": true
+    },
+    "tapping": {
+        "term": 150,
+        "toggle": 2,
+        "hold_on_other_key_press": false,
+        "ignore_mod_tap_interrupt": true,
+        "permissive_hold": false,
+        "retro": false
+    },
+    "features": {
+        "console": false
+    }
+}

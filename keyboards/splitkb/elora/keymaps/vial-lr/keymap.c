@@ -328,3 +328,9 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     },
 };
 #endif
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    #ifdef CONSOLE_ENABLE
+      xprintf("KL: row: %u, column: %u, pressed: %u\n", record->event.key.col, record->event.key.row, record->event.pressed);
+    #endif
+    return true;
+}

@@ -334,6 +334,54 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     },
 };
 #endif
+
+/*
+Per-key not valid in Vial?
+
+#ifdef HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    // Home row never
+    if(record->event.key.row == 2) {
+        return false;
+    }
+
+    bool defaultHokp = !(QS.tapping & 2);
+    switch (keycode) {
+        default:
+            // Do not select the hold action when another key is tapped.
+            return defaultHokp;
+    }
+}
+#endif
+
+#ifdef TAPPING_TERM_PER_KEY
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    uint16_t defaultTerm = QS.tapping_term;
+
+    if(record->event.key.row == 2) {
+        if(defaultTerm < 200) {
+            return 150;
+        } else {
+            return defaultTerm - 50;
+        }
+    }
+    switch (keycode) {
+        default:
+            return defaultTerm;
+    }
+}
+#endif
+
+#ifdef RETRO_TAPPING_PER_KEY
+bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
+    bool defaultRetro = QS.tapping & 8;
+    switch (keycode) {
+        default:
+            return defaultRetro;
+    }
+}
+#endif
+*/
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     #ifdef CONSOLE_ENABLE
       xprintf("KL: row: %u, column: %u, pressed: %u\n", record->event.key.col, record->event.key.row, record->event.pressed);

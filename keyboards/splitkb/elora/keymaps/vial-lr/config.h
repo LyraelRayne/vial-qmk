@@ -25,13 +25,14 @@
 /// Vial-specific settings
 
 // Default is 2, needed because keymap has 7 layers
-#define DYNAMIC_KEYMAP_LAYER_COUNT 6
+#define DYNAMIC_KEYMAP_LAYER_COUNT 8
 
 #define VIAL_KEYBOARD_UID {0xB3, 0x8D, 0x94, 0xDA, 0xB3, 0xD7, 0xDC, 0x3D}
 
 #define VIAL_UNLOCK_COMBO_ROWS { 3, 9 }
 #define VIAL_UNLOCK_COMBO_COLS { 2, 5 }
 
+//my stuff
 #define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_RAINBOW_SWIRL
 #define RGBLIGHT_DEFAULT_ON true
 
@@ -41,3 +42,6 @@
 #define TAPPING_TOGGLE 2
 
 #undef HOLD_ON_OTHER_KEY_PRESS
+
+//mouse keys
+#define MOUSEKEY_MOVE_DELTA 4

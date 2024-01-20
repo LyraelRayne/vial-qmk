@@ -40,5 +40,6 @@ ENCODER_MAP_ENABLE = yes
 
 # My stuff
 CAPS_WORD_ENABLE = yes
+KEY_LOCK_ENABLE = yes
 
 CONSOLE_ENABLE = no

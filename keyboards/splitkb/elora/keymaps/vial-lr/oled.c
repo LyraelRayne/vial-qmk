@@ -2,49 +2,37 @@
 #include <stdio.h>
 #include "layers.h"
 
-#define LAYER_DISPLAY_FIRST_ROW 3 // 0 indexed
+void oled_white_space(void) {
+  oled_write_P(PSTR(" "), false);
+}
 
 void print_layer_status(void) {
     static const char OLED_LAYER_MAP[][4] PROGMEM = {
         "NAV",
-        " M ",
+        "MOU",
         "SYM",
-        "FN ",
+        "FUN",
         "ADJ",
-        " X "
+        "_X_"
     };
 
     for(uint8_t layerOffset = 0; layerOffset < TMP_LAYER_COUNT; layerOffset += 1) {
         uint8_t layer = layerOffset + FIRST_TMP_LAYER;
-        uint8_t row = (layerOffset / 3) + LAYER_DISPLAY_FIRST_ROW;
-        uint8_t col = (layerOffset % 3) * 3;
-
-        oled_set_cursor(col, row);
         oled_write(OLED_LAYER_MAP[layerOffset], IS_LAYER_ON(layer));
+        if((layerOffset + 1) % 2 == 0) {
+            oled_advance_page(true);
+        } else {
+            oled_white_space();
+        }
     }
-}
-
-/*
-    Just print some numbers out to indicate max width
-*/
-void print_sizing(void) {
-    oled_write_ln_P("0123456789abcdef", false);
-}
-
-void next_line(void) {
-    oled_write_ln_P(PSTR(""), false);
 }
 
 void print_led_usb_state(void) {
     // Keyboard LED Status
     led_t led_usb_state = host_keyboard_led_state();
-    oled_write_P(PSTR(" S"), led_usb_state.scroll_lock);
-    oled_write_P(PSTR(" C"), led_usb_state.caps_lock);
-    oled_write_P(PSTR(" N"), !led_usb_state.num_lock);
-}
-
-void oled_white_space(void) {
-  oled_write_P(PSTR(" "), false);
+    oled_write_P(PSTR("SC"), led_usb_state.scroll_lock);
+    oled_write_P(PSTR("CA"), led_usb_state.caps_lock);
+    oled_write_P(PSTR("NU"), !led_usb_state.num_lock);
 }
 
 // Adapted from keyboards/splitkb/kyria/keymaps/john-ezra/oled.c
@@ -59,18 +47,20 @@ void render_mod_state(uint8_t modifiers) {
 }
 
 bool lr_oled_task_master(void) {
-    oled_write_P(PSTR("Lyrael\n\n"), false);
+    oled_write_ln_P(PSTR("Lyrael"), false);
+    oled_advance_page(true);
+
     oled_write_P(IS_LAYER_ON_STATE(default_layer_state, _QWGAM) ? PSTR("Gam") : PSTR("Typ"), false);
-
+    oled_white_space();
     print_led_usb_state();
-    next_line();
 
+    oled_advance_page(true);
     print_layer_status();
-    next_line();
+    oled_advance_page(true);
 
     oled_set_cursor(0, oled_max_lines() - 6);
     render_mod_state(get_mods()|get_oneshot_mods());
-
+//    oled_write_ln_P(PSTR("0123456789abcdef"), false);
     return false;
 }
 

@@ -43,3 +43,8 @@ CAPS_WORD_ENABLE = yes
 KEY_LOCK_ENABLE = yes
 
 CONSOLE_ENABLE = no
+
+ifeq ($(strip $(OLED_ENABLE)), yes)
+    SRC += oled.c
+endif
+

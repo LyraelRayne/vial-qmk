@@ -15,16 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
-
-enum layers {
-    _QWERTY = 0,
-    _QWGAM,
-    _NAV,
-    _MOUSE,
-    _SYM,
-    _FUNCTION,
-    _ADJUST,
-};
+#include "layers.h"
 
 // Aliases for readability
 #define QWERTY   DF(_QWERTY)

@@ -64,8 +64,65 @@ bool lr_oled_task_master(void) {
     return false;
 }
 
+
+#define NO_MAP() { \
+   "NO_MAP", \
+   "", \
+   "", \
+   "", \
+\
+   "", \
+   "", \
+   "", \
+   "", \
+}
 bool lr_oled_task_slave(void) {
     // just use the keyboard code for now.
+    static const char OLED_LAYER_MAP[][8][11] PROGMEM = {
+        [_QWERTY] = NO_MAP(),
+        [_QWGAM] = NO_MAP(),
+        [_NAV] = NO_MAP(),
+        [_MOUSE] = NO_MAP(),
+        [_SYM] = {
+            "1        ",
+            "2  `12345",
+            "3  ~!@#$%",
+            "4  \\|:;-[",
+
+            "1        ",
+            "2  67890=",
+            "3  ^&*()+",
+            "4  ]_,./?"
+        },
+        [_FUNCTION] = NO_MAP(),
+        [_ADJUST] = NO_MAP(),
+        [_X] = {
+            "1     () ",
+            "2  ` -[] ",
+            "3  ~ _{} ",
+            "4     <> ",
+
+            "1        ",
+            "2        ",
+            "3        ",
+            "4        ",
+        }
+    };
+
+    for(uint8_t layer = _X; layer > 1; layer -= 1) {
+        if(IS_LAYER_ON(layer) && strcmp_P("NO_MAP", OLED_LAYER_MAP[layer][0]) != 0) {
+            oled_write_ln_P(PSTR("   123456"), false);
+            for(uint8_t row = 0; row < 8; row++) {
+                oled_write_ln_P(OLED_LAYER_MAP[layer][row], false);
+                if(row == 3) {
+                    oled_advance_page(true);
+                }
+            }
+            return false;
+        }
+    }
+    oled_write_P(PSTR("\n\n\n\n\n\n\n\n"), false);
+    oled_set_cursor(0,0);
     return true;
 }
 

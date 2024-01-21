@@ -40,7 +40,7 @@ void print_led_usb_state(void) {
     led_t led_usb_state = host_keyboard_led_state();
     oled_write_P(PSTR(" S"), led_usb_state.scroll_lock);
     oled_write_P(PSTR(" C"), led_usb_state.caps_lock);
-    oled_write_P(PSTR(" N"), led_usb_state.num_lock);
+    oled_write_P(PSTR(" N"), !led_usb_state.num_lock);
 }
 
 void oled_white_space(void) {

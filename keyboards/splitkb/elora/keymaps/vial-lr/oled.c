@@ -2,19 +2,26 @@
 #include <stdio.h>
 #include "layers.h"
 
-#define LAYER_DISPLAY_FIRST_ROW = 3; // 0 indexed
+#define LAYER_DISPLAY_FIRST_ROW 3 // 0 indexed
 
 void print_layer_status(void) {
-    static const char OLED_LAYER_MAP[] PROGMEM = "NMSFA";
+    static const char OLED_LAYER_MAP[][4] PROGMEM = {
+        "NAV",
+        " M ",
+        "SYM",
+        "FN ",
+        "ADJ",
+        " X "
+    };
 
-    char layerStatus[(TMP_LAYER_COUNT * 2) + 1];
     for(uint8_t layerOffset = 0; layerOffset < TMP_LAYER_COUNT; layerOffset += 1) {
         uint8_t layer = layerOffset + FIRST_TMP_LAYER;
-        uint8_t start = layerOffset * 2;
-        sprintf(layerStatus + start, PSTR("%c "), IS_LAYER_ON(layer) ? *(OLED_LAYER_MAP + layerOffset) : *(PSTR(" ")));
-    }
+        uint8_t row = (layerOffset / 3) + LAYER_DISPLAY_FIRST_ROW;
+        uint8_t col = (layerOffset % 3) * 3;
 
-    oled_write(layerStatus, false);
+        oled_set_cursor(col, row);
+        oled_write(OLED_LAYER_MAP[layerOffset], IS_LAYER_ON(layer));
+    }
 }
 
 /*
